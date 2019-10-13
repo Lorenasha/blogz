@@ -9,7 +9,9 @@
 
         <ul class="field">
             {% for item in blogItems %}
-            <li>{{item}}</li>
+                <li class="titlePost">{{item[0]}}</li>
+                <li class="bodyPost">{{item[1]}}</li>
+                <hr/>
             {% endfor %}
         </ul>
 

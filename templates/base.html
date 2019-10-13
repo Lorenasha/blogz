@@ -31,16 +31,48 @@
                 color: rgb(59, 52, 59); 
                 font-size: 14px;
                 font-family: fantasy;
-                padding: 15px;
+                padding: 12px;
+                list-style-type: none;
+            }
+
+            nav {
+                display: block;
+                list-style-type: none;
+                text-align: left;
+                margin: 10px 10px 10px;
+            }
+                
+            .error{
+                    color:red;
+                    font-family: fantasy cursive;
+                }
+            
+            .titlePost{
+                width: 600px;
+                color: rgb(59, 52, 59); 
+                font-size: 18px;
+                font-family: fantasy ;
+                font-weight:bold;
+                padding: 8px;
+            }
+            .bodyPost{
+                width: 600px;
+                color: black; 
+                font-size: 14px;
+                font-family: fantasy ;
+                padding: 8px;
             }
         </style>   
            
-        <table>
-            <tr>
-                <th style= "width: 200px;"><a href="{{ url_for('blog')}}">Main blog Page </a></th>
-                <th style=" width: 200px;"><a href="{{ url_for('newpost')}}">Add a blog entry</a></th>
-            </tr>
-        </table>
+        <nav>
+                <table>
+                    <tr>
+                            <td class="label">    <a href="{{ url_for('blog')}}">Main blog Page </a>      </td>
+                            <td class="label">    <a href="{{ url_for('newpost')}}">Add a blog entry</a>      </td>
+                        
+                    </tr>
+                </table>
+        </nav>
        
         
         <h1 class="title">{{title}}</h1>
