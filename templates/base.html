@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+    <head>
+        <style>
+            .title{
+                width: 600px;
+                color: indigo; 
+                font-size: 34px;
+                font-family: fantasy;
+                margin: 0 auto;
+                padding: 15px;
+            }
+            .label{
+                width: 200px;
+                color: teal; 
+                font-size: 14px;
+                font-family: fantasy;
+                margin: 0 auto;
+                padding: 15px;
+            }
+            .tabla{
+                width: 600px;
+                font-size: 14px;
+                font-family: fantasy;
+                margin: 0 auto;
+                padding: 10px;
+                position: relative;
+            }
+            .field{
+                width: 600px;
+                color: rgb(59, 52, 59); 
+                font-size: 14px;
+                font-family: fantasy;
+                padding: 15px;
+            }
+        </style>   
+           
+        <table>
+            <tr>
+                <th style= "width: 200px;"><a href="{{ url_for('blog')}}">Main blog Page </a></th>
+                <th style=" width: 200px;"><a href="{{ url_for('newpost')}}">Add a blog entry</a></th>
+            </tr>
+        </table>
+       
+        
+        <h1 class="title">{{title}}</h1>
+    </head>
+<body>
+
+    {% block content %}
+    {% endblock %}
+    <p class="field">{{bodyBlog}}</p>
+</body>
+</html>
+
+

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+   
+    {% if blogItems|length == 0 %}
+
+        <p class="field">No posts yet</p>
+    {% else %}
+
+        <ul class="field">
+            {% for item in blogItems %}
+            <li>{{item}}</li>
+            {% endfor %}
+        </ul>
+
+    {% endif %}
+{% endblock %}

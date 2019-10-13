@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+      <form method='post'>
+            <table>
+                        <tr>
+                              <td class="tabla">
+                                    <label for='title' class="label"> Title for your new blog:</label> <br>
+                                    <input type="text" name='title' required class="field">
+                               </td>
+                        </tr>
+                        <tr>
+                              <td class="tabla">
+                                    <label for='body' class="label">Your new blog:</label><br>
+                                    <textarea id='body' name='body' rows='5' cols='30' required class="field" ></textarea>         
+                              </td>
+                        </tr>
+                        <tr>
+                              <td class="tabla">
+                                    <input type="submit" value='Add a New Post' class="label">
+                              </td>
+                        </tr>
+            </table>
+            
+    </form>
+
+{% endblock %}
