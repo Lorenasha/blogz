@@ -39,8 +39,9 @@ def newpost():
             db.session.add(new_blog)
             db.session.commit()
             entryBlog = Blog.query.filter_by(id=new_blog.id).first_or_404(description="There is no data with the {} ID".format(new_blog.id))
-            #return render_template('entry.html',  title=entryBlog.title, blogItems=entryBlog)
-            return redirect(url_for('entry', numid=entryBlog.id))
+            #return redirect(url_for('entry', numid=entryBlog.id)) #Funciona pero codifica la URL
+            return redirect('/blog?id='+str(entryBlog.id)) #Solo abre blog.html ...nunca el blog del link
+            #return render_template("entry.html", title=entryBlog.title, blogItems=entryBlog) #Funciona pero sigue mostrando la url de newpost
             
 
 
@@ -51,17 +52,24 @@ def newpost():
 
 @app.route('/blog')
 def blog():
-    
-    entryBlog=Blog.query.all()
-    return render_template('blog.html',title="Build a Blog", blogItems=entryBlog)
+    id=""
+    id=request.args.get("id")
+    if id:
+        #return "<h1> "+str(id)+"</h1>"
+        entryBlog = Blog.query.filter_by(id=id).first_or_404(description="There is no data with the {} ID".format(id))
+        return render_template("entry.html", title=entryBlog.title, blogItems=entryBlog) #Funciona pero sigue mostrando la url de newpost
+    else:        
+        entryBlog=Blog.query.all()
+        return render_template('blog.html',title="Build a Blog", blogItems=entryBlog)
 
 
 
 @app.route('/blog?id=<numid>')
 def entry(numid):
     idnum=numid
-    entryBlog = Blog.query.filter_by(id=idnum).first_or_404(description="There is no data with the {} ID".format(idnum))
-    return render_template('entry.html', title=entryBlog.title, blogItems=entryBlog)
+    return "<h4>Entra aqui?</h4>"
+    #entryBlog = Blog.query.filter_by(id=idnum).first_or_404(description="There is no data with the {} ID".format(idnum))
+    #return render_template('entry.html', title=entryBlog.title, blogItems=entryBlog)
 
 
 
