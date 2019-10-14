@@ -9,8 +9,9 @@
 
         <ul class="field">
             {% for item in blogItems %}
-                <li class="titlePost">{{item[0]}}</li>
-                <li class="bodyPost">{{item[1]}}</li>
+                <li class="titlePost"><a href="{{ url_for('entry', numid=3)  }}" > {{item.title}} </a> </li>
+                <li class="bodyPost">{{item.body}}</li>
+                <li class="bodyPost">{{item.id}}</li>
                 <hr/>
             {% endfor %}
         </ul>

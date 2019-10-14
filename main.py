@@ -16,7 +16,6 @@ class Blog(db.Model):
         self.title=title
         self.body=body
 
-entryBlog = []
 
 
 @app.route('/newpost', methods=['POST', 'GET'])
@@ -25,7 +24,6 @@ def newpost():
     if request.method == 'POST':
         titl = request.form['title']
         body = request.form['body']
-        #return render_template('base.html',title=titl, bodyBlog=body )
         errtitl=""
         errbody=""
         
@@ -37,19 +35,36 @@ def newpost():
         if errtitl or errbody:
             return render_template('newpost.html',title="Add a Blog Entry", errtitl=errtitl, errbody=errbody)
         else:
-            entryBlog.append([titl,body])
-            return render_template('blog.html',title="Build a Blog", blogItems=entryBlog)
-
+            new_blog=Blog(titl,body)
+            db.session.add(new_blog)
+            db.session.commit()
+            entryBlog = Blog.query.filter_by(id=new_blog.id).first_or_404(description="There is no data with the {} ID".format(new_blog.id))
+            #return render_template('entry.html',  title=entryBlog.title, blogItems=entryBlog)
+            return redirect(url_for('entry', numid=entryBlog.id))
+            
 
 
     return render_template('newpost.html',title="Add a Blog Entry")
 
 
-@app.route('/blog', methods=['POST', 'GET'])
+    
+
+@app.route('/blog')
 def blog():
-    #if request.method == 'POST':
-   #    return render_template('base.html',title="New Blog") 
-        return render_template('blog.html',title="Build a Blog", blogItems=entryBlog)
+    
+    entryBlog=Blog.query.all()
+    return render_template('blog.html',title="Build a Blog", blogItems=entryBlog)
+
+
+
+@app.route('/blog?id=<numid>')
+def entry(numid):
+    idnum=numid
+    entryBlog = Blog.query.filter_by(id=idnum).first_or_404(description="There is no data with the {} ID".format(idnum))
+    return render_template('entry.html', title=entryBlog.title, blogItems=entryBlog)
+
+
+
 
 if __name__=="__main__":
     app.run()

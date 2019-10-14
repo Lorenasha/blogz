@@ -49,7 +49,6 @@
             
             .titlePost{
                 width: 600px;
-                color: rgb(59, 52, 59); 
                 font-size: 18px;
                 font-family: fantasy ;
                 font-weight:bold;
@@ -74,14 +73,13 @@
                 </table>
         </nav>
        
-        
+        <title>{{title}}</title>
         <h1 class="title">{{title}}</h1>
     </head>
 <body>
 
     {% block content %}
     {% endblock %}
-    <p class="field">{{bodyBlog}}</p>
 </body>
 </html>
 

@@ -1,0 +1,19 @@
+
+
+{% extends "base.html" %}
+
+{% block content %}
+   
+    {% if not blogItems %}
+
+        <p class="field">No find the post</p>
+    {% else %}
+
+        <ul class="field">
+                <li class="bodyPost">{{blogItems.body}}</li>
+                <li class="bodyPost">{{blogItems.id}}</li>
+               
+        </ul>
+
+    {% endif %}
+{% endblock %}
