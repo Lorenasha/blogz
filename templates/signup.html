@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+        
+        <form action="/signup" method="POST">
+            <table>
+                <tr>
+                    <td>
+                        <label for='username' class="label">Username:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="username" id="username"  class="field" value= {{username}} >
+                    <span class="error">{{erruser}}</span>
+                    <td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for='pass' class="label" >Password:</label>
+                    </td>
+                    <td>
+                        <input type="password" name="pass" id="pass" pattern="[a-zA-z0-9]+"  class="field" value= {{pass1}} >
+                        <span class="error">{{errpass}}</span>
+                    <td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for='vpass' class="label">Validate Password:</label>
+                    </td>
+                    <td>
+                        <input type="password" name="vpass" id="vpass"  pattern="[a-zA-z0-9]+"  class="field" value={{pass2}}>
+                        <span class="error">{{errpass2}}</span>
+                    <td>
+                </tr>
+                <tr>
+                   <td colspan="2"><input type="submit" value="SignUp" class="label"></td>
+                </tr>
+            </table>
+        </form>
+    
+{% endblock %}

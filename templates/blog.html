@@ -11,6 +11,7 @@
             {% for item in blogItems %}
                 <li class="titlePost"><a href="/blog?id={{item.id}}"> {{item.title}} </a> </li>
                 <li class="bodyPost">{{item.body}}</li>
+                <li class="authorPost">written by <a href="/blog?user={{item.owner.username}}">{{item.owner.username}}</a></li>
                 <hr/>
             {% endfor %}
         </ul>

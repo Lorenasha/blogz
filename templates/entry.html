@@ -1,19 +1,14 @@
-
-
 {% extends "base.html" %}
 
 {% block content %}
    
     {% if not blogItems %}
-
         <p class="field">No find the post</p>
     {% else %}
 
         <ul class="field">
-                <li class="bodyPost">{{blogItems.body}}</li>
-                <li class="bodyPost">{{blogItems.id}}</li>
-               
+                <li class="bodyPost">{{blogItems.body}}</li>               
         </ul>
-
+        <p class="authorPost">written by <a href="/blog?user={{blogItems.owner.username}}">{{blogItems.owner.username}}</a></p>
     {% endif %}
 {% endblock %}
