@@ -163,12 +163,35 @@ def newpost():
 def blog():
     id=""
     id=request.args.get("id")
+    username=""
+    username=request.args.get("user")
     if id:
         entryBlog = Blog.query.filter_by(id=id).first_or_404(description="There is no data with the {} ID".format(id))
         return render_template("entry.html", title=entryBlog.title, blogItems=entryBlog)
+    elif username:
+        owner=User.query.filter_by(username=username).first()
+        entryBlog = Blog.query.filter_by(owner_id=owner.id).all()
+        return render_template('blog.html',title="Blog posts by "+ username, blogItems=entryBlog)
     else:        
         entryBlog=Blog.query.all()
         return render_template('blog.html',title="Build a Blog", blogItems=entryBlog)
+
+
+@app.route('/')
+def index():
+    #entryBlog = Blog.query.with_entities(Blog.owner_id).distinct()
+    #entryBlog = Blog.query.with_entities(Blog.owner_id.distinct())
+    #entryBlog = Blog.query.order_by(Blog.owner_id).with_entities(Blog.owner_id.distinct()).all()
+    #entryBlog = Blog.query(Blog.owner_id.distinct())
+    #entryBlog = Blog.query.order_by(Blog.owner_id).options(Blog.owner_id.distinct()).all()
+    #entryBlog = Blog.query.order_by(Blog.owner_id).owner_id.distinct().all()
+    #entryBlog = Blog.query.order_by(Blog.owner_id).Column.owner_id.distinct().all()
+    #entryBlog = Blog.query.order_by(Blog.owner_id).with_entities(Blog.owner_id, Blog.title, Blog.body).distinct(Blog.owner_id).all()
+    entryBlog = Blog.query.order_by(Blog.owner_id).all()
+    
+    return render_template("index.html", title="Blog Users!", blogItems=entryBlog)
+
+
 
 
 
