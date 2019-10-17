@@ -2,14 +2,14 @@
 
 {% block content %}
    
-    {% if blogItems|length == 0 %}
+    {% if users|length == 0 %}
 
-        <p class="field">No posts yet</p>
+        <p class="field">No Users yet</p>
     {% else %}
 
         <ul class="field">
-            {% for item in blogItems %}
-                <li class="authorPost"><a href="/blog?user={{item.owner.username}}">{{item.owner.username}}</a></li>
+            {% for item in users %}
+                <li class="authorPost"><a href="/blog?user={{item.username}}">{{item.username}}</a></li>
             {% endfor %}
         </ul>
 

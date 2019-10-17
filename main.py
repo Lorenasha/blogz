@@ -187,9 +187,9 @@ def index():
     #entryBlog = Blog.query.order_by(Blog.owner_id).owner_id.distinct().all()
     #entryBlog = Blog.query.order_by(Blog.owner_id).Column.owner_id.distinct().all()
     #entryBlog = Blog.query.order_by(Blog.owner_id).with_entities(Blog.owner_id, Blog.title, Blog.body).distinct(Blog.owner_id).all()
-    entryBlog = Blog.query.order_by(Blog.owner_id).all()
+    users = User.query.order_by(User.username).all()
     
-    return render_template("index.html", title="Blog Users!", blogItems=entryBlog)
+    return render_template("index.html", title="Blog Users!", users=users)
 
 
 
